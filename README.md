@@ -1,6 +1,6 @@
 # orbit-db-test
 
-- [docstore](##docstorename-options) is a document database to which documents can be stored and indexed by a specified key. Useful for example building search indices or version controlling documents and data.
+[docstore](##docstorename-options) is a document database to which documents can be stored and indexed by a specified key. Useful for example building search indices or version controlling documents and data.
 
 ### docstore(name, options)
 
