@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +16,11 @@
     "orbit-db": "^0.17.3",
     "orbit-db-docstore": "^0.2.0",
     "shortid": "^2.2.8"
+  },
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^3.4.2",
+    "mocha-as-promised": "^2.0.0"
   }
 }
