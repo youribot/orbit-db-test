@@ -10,32 +10,6 @@ const bcrypt = require('bcrypt')
 const saltRounds = 10
 const shortid = require('shortid')
 
-//
-// const db = orbitdb.docstore('orbit.users.profile', { indexBy: 'alias' })
-//
-// var user = {
-//   email: 'nik@nffdifk.com',
-//   pass: '1234',
-//   alias: 'niksmac'
-// }
-//
-// db.events.on('ready', () => {
-//   var c = db.query((e) => e.alias == 'niksmfdfdfac')
-//   console.log(c)
-// })
-// db.load()
-//
-// function saveUser (usr) {
-//   var user = {
-//     email: 'nik@nffdifk.com',
-//     pass: '1234',
-//     alias: 'niksmac'
-//   }
-//   bcrypt.hash(user.pass, saltRounds).then(function (hash) {
-//     db.put({ _id: 10001, email: user.email, pass: hash, alias: user.alias })
-//   })
-// }
-
 var _this = this
 
 exports.createDb = function (dbname, indexBy) {
