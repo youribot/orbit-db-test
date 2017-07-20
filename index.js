@@ -11,19 +11,23 @@ var db = dbModal.createDb(dbname, indexBy)
 var user = {
   email: 'nik@light.com',
   pass: '1234',
-  alias: 'niksmac'
+  alias: 'niksmacp' + new Date()
 }
-// bcrypt.hash(user.pass, saltRounds).then(function (hash) {
-//   user.pass = hash
-//   db.put(user)
-// })
+
+// setInterval(function () {
+  // console.log('?')
+bcrypt.hash(user.pass, saltRounds).then(function (hash) {
+  user.pass = hash
+  db.put(user)
+})
+// }, 3000)
+
 db.events.on('ready', () => {
-  var val = dbModal.authenticateUser(db, user.email, user.pass)
-  if (val !== false) {
-    val.then((res) => {
-      console.log(res)
-    })
-  }
+  console.log(db.get(''))
+})
+
+db.events.on('synced', () => {
+  console.log(db.get(''))
 })
 
 db.load()
