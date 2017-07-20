@@ -6,7 +6,7 @@ var chaiAsPromised = require('chai-as-promised')
 chai.use(chaiAsPromised)
 chai.should()
 var expect = chai.expect
-var dbname = 'oiobo.db.users'
+var dbname = 'oiobo.db.test.users'
 var indexBy = 'alias'
 var dbObj = db.createDb(dbname, indexBy)
 
@@ -33,9 +33,12 @@ describe('db', function () {
     })
 
     it('should be able to login using test data', function () {
-      db.authenticateUser(dbObj, user.email, user.pass).then((res) => {
-        expect(res).to.be.true
-      })
+      var val = db.authenticateUser(dbObj, user.email, user.pass)
+      if (val !== false) {
+        val.then((res) => {
+          expect(res).to.be.true
+        })
+      }
     })
   })
 })
