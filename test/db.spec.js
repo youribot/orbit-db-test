@@ -40,5 +40,19 @@ describe('db', function () {
         })
       }
     })
+
+    it('should return false using wrong password', function () {
+      var val = db.authenticateUser(dbObj, user.email, 'wrong password')
+      if (val !== false) {
+        val.then((res) => {
+          expect(res).to.be.false
+        })
+      }
+    })
+
+    it('should return false email not exist', function () {
+      var val = db.authenticateUser(dbObj, 'sdfdsfdsfsdjhsijsdfhidsjh@kjsdjfhdsjj.vom', user.pass)
+      expect(val).to.be.false
+    })
   })
 })
