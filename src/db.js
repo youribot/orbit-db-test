@@ -3,32 +3,35 @@
 const IpfsApi = require('ipfs-api')
 const OrbitDB = require('orbit-db')
 
-const ipfs = IpfsApi('127.0.0.1', '5001')
+const ipfs = IpfsApi('192.168.27.101', '5001')
 const orbitdb = new OrbitDB(ipfs)
 
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 const shortid = require('shortid')
+const db = orbitdb.docstore('orbit.users.profile', { indexBy: 'alias' })
 
 var _this = this
 
 exports.createDb = function (dbname, indexBy) {
-  var docstore = orbitdb.docstore(dbname, { indexBy: indexBy })
-  return docstore
+  return orbitdb.docstore(dbname, { indexBy: indexBy })
 }
 
 exports.saveUser = function (usr) {
-  const db = _this.createDb('oiobo.db.users', 'alias')
   var id = shortid.generate()
   var hash = bcrypt.hashSync(usr.pass, saltRounds)
   return db.put({ _id: id, email: usr.email, pass: hash, alias: usr.alias})
 }
 
-exports.authenticateUser = function (email, password) {
-  const db = _this.createDb('oiobo.db.users', 'email')
-  // db.events.on('ready', () => {
+function getUserByEmail (db, email) {
   return db.query((e) => e.email == email)
+}
 
-  // })
-  // db.load()
+exports.authenticateUser = function (db, email, password) {
+  var users = getUserByEmail(db, email)
+  if (users.length > 0) {
+    var user = users.shift()
+    return bcrypt.compare(password, user.pass)
+  }
+  return false
 }

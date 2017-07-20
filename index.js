@@ -1,36 +1,33 @@
-const IpfsApi = require('ipfs-api')
-const OrbitDB = require('orbit-db')
-
-const ipfs = IpfsApi('127.0.0.1', '5001')
-const orbitdb = new OrbitDB(ipfs)
-
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 const shortid = require('shortid')
 
 var dbModal = require('./src/db')
 
-const db = orbitdb.docstore('oiobo.db.users', { indexBy: 'alias' })
+var dbname = 'oiobo.db.users'
+var indexBy = 'alias'
+var db = dbModal.createDb(dbname, indexBy)
 
 var user = {
-  _id: 1002,
   email: 'nik@light.com',
-  pass: '12df34',
-  maybe: 'true',
-  alias: 'niksmac'
+  pass: '1234',
+  alias: 'niksmacp' + new Date()
 }
-// bcrypt.hash(user.pass, saltRounds).then(function (hash) {
-//   db.put(user)
-// })
-db.events.on('ready', () => {
-  var val = dbModal.authenticateUser(user.email, user.pass)
-  console.log(val)
-  var f = db.query((e) => e.email == user.email)
-  console.log(f)
+
+// setInterval(function () {
+  // console.log('?')
+bcrypt.hash(user.pass, saltRounds).then(function (hash) {
+  user.pass = hash
+  db.put(user)
 })
-// db.events.on('ready', () => {
-//   console.log('ready?')
-//   var doc = db.query((e) => e.email == 'nik@light.com')
-//   console.log(doc)
-// })
+// }, 3000)
+
+db.events.on('ready', () => {
+  console.log(db.get(''))
+})
+
+db.events.on('synced', () => {
+  console.log(db.get(''))
+})
+
 db.load()
