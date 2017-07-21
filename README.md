@@ -2,6 +2,8 @@
 
 [docstore](##docstorename-options) is a document database to which documents can be stored and indexed by a specified key. Useful for example building search indices or version controlling documents and data.
 
+[![Build Status](https://travis-ci.org/youribot/orbit-db-test.svg?branch=master)](https://travis-ci.org/youribot/orbit-db-test)
+
 ### docstore(name, options)
 
   Package:
