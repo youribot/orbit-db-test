@@ -11,6 +11,7 @@
   "dependencies": {
     "bcrypt": "^1.0.2",
     "bcryptjs": "^2.4.3",
+    "chai-arrays": "^1.0.0",
     "ipfs": "^0.25.0",
     "ipfs-api": "^14.0.4",
     "orbit-db": "^0.17.3",
