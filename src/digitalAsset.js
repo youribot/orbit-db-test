@@ -24,7 +24,5 @@ exports.saveOffer = function (offer) {
 }
 
 exports.listMyOffers = function (alias) {
-  var k = db.query((e) => e.alias == alias)
-  console.log(k)
-  return
+  return db.query((e) => e.alias == alias)
 }
