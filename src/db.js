@@ -3,7 +3,7 @@
 const IpfsApi = require('ipfs-api')
 const OrbitDB = require('orbit-db')
 
-const ipfs = IpfsApi('192.168.27.101', '5001')
+const ipfs = IpfsApi('127.0.0.1', '5001')
 const orbitdb = new OrbitDB(ipfs)
 
 const bcrypt = require('bcrypt')
