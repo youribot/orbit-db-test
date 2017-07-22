@@ -4,4 +4,7 @@ node_js:
   - "8.1"
 before_script:
   - npm install -g mocha babel-eslint
+  - npm i ipfs -g
+  - npm i ipfs ipfs-api orbit-db
+  - ipfs daemon --enable-pubsub-experiment
 script: mocha
